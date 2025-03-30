@@ -1,0 +1,40 @@
+equire 'vendor/autoload.php';
+https://core.telegram.org/bots/api
+$telegram = new Api(7299920870:AAGyKW7d2b92cz4VhhmvTuLegr457jgfS_A)
+
+// دریافت داده‌های ارسالی
+$update = $telegram->getWebhookUpdate();
+$message = $update->getMessage();
+$chatId = $message->getChat()->getId();
+$text = $message->getText();
+
+// دستورات اصلی
+if($text === '/start') {
+    // نمایش راهنمایی برای جوین شدن به کانال‌ها
+    $response = "سلام! لطفاً به کانال‌های زیر بپیوندید:";
+    $channels = getChannels(); // تابعی که لیست کانال‌ها را برمی‌گرداند
+    foreach ($channels as $channel) {
+        $response .= "\n" . $channel;
+    }
+    $telegram->sendMessage(['chat_id' => $chatId, 'text' => $response]);
+}
+
+// توابع دیگر برای مدیریت مسابقه، زیرمجموعه‌ها و نمایش امتیار
+function getChannels() {
+    // پایگاه داده خود را در اینجا بخوانید
+    return [ '@channel1', '@channel2'];
+ion startQuiz($userId) {
+    // دریافت سوالات از پایگاه داده و ارسال به کاربر
+}
+
+function checkAnswer($userId, $selectedAnswer) {
+    // بررسی پاسخ کاربر و افزایش امتیاز
+}
+
+function showLeaderboard() {
+    // نمایش لیست امتیازات کاربران
+}ion resetScores() {
+    // کد SQL برای تنظیم امتیازها به صفر
+    $sql = "UPDATE users SET score = 0";
+    // اجرای کد SQL
+}
